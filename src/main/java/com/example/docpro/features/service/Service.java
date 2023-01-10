@@ -19,8 +19,7 @@ public class Service implements Serializable {
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Enumerated(EnumType.STRING)
-  private ServiceType serviceType;
+  private String name;
 
   private Integer price;
 

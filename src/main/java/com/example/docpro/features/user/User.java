@@ -31,6 +31,10 @@ public class User implements Serializable {
 
   private String phoneNumber;
 
+  private String description;
+
+  private String timeSchedule;
+
   @Enumerated(EnumType.STRING)
   private UserType userType;
 

@@ -22,6 +22,8 @@ public class UserMapper {
     userDto.setUserExperience(UserExperienceMapper.userExperienceDtoSetToUserExperienceSet(user.getUserExperience()));
     userDto.setServices(user.getServices().stream().map(ServiceMapper::mapServiceToServiceDto).collect(Collectors.toList()));
     userDto.setProfileImageUrl(user.getProfileImageUrl());
+    userDto.setTimeSchedule(user.getTimeSchedule());
+    userDto.setDescription(user.getDescription());
 
     return userDto;
   }
@@ -38,6 +40,8 @@ public class UserMapper {
     user.setLastName(dto.getLastName());
     user.setPhoneNumber(dto.getPhoneNumber());
     user.setProfileImageUrl(dto.getProfileImageUrl());
+    user.setDescription(dto.getDescription());
+    user.setTimeSchedule(dto.getTimeSchedule());
 
     return user;
   }

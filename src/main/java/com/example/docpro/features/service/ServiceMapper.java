@@ -6,7 +6,7 @@ public class ServiceMapper {
 
     return ServiceDto.builder()
         .id(service.getId())
-        .serviceType(service.getServiceType())
+        .name(service.getName())
         .price(service.getPrice())
         .build();
   }
@@ -14,7 +14,7 @@ public class ServiceMapper {
   public static Service mapServiceDtoToService(ServiceDto serviceDto) {
 
     return Service.builder()
-        .serviceType(serviceDto.getServiceType())
+        .name(serviceDto.getName())
         .price(serviceDto.getPrice())
         .build();
   }

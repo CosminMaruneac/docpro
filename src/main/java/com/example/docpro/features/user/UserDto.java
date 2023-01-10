@@ -42,4 +42,7 @@ public class UserDto {
 
   private String profileImageUrl;
 
+  private String description;
+
+  private String timeSchedule;
 }

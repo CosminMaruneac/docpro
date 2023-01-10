@@ -2,9 +2,6 @@ package com.example.docpro.features.service;
 
 import lombok.*;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 @Setter
 @Getter
 @AllArgsConstructor
@@ -14,8 +11,7 @@ public class ServiceDto {
 
   private Long id;
 
-  @Enumerated(EnumType.STRING)
-  private ServiceType serviceType;
+  private String name;
 
   private Integer price;
 }
