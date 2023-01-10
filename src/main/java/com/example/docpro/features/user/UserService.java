@@ -29,7 +29,7 @@ public class UserService {
 
   public UserDto register(UserDto userDto) {
 
-    if (userRepository.existsByEmail(userDto.getEmail()))
+    if (Boolean.TRUE.equals(userRepository.existsByEmail(userDto.getEmail())))
       throw new BadRequestException("This user already exists!");
 
     return create(userDto);
@@ -117,6 +117,8 @@ public class UserService {
           user.setLastName(userDto.getLastName());
           user.setPhoneNumber(userDto.getPhoneNumber());
           user.setProfileImageUrl(userDto.getProfileImageUrl());
+          user.setTimeSchedule(userDto.getTimeSchedule());
+          user.setDescription(userDto.getDescription());
 
           userRepository.save(user);
           return UserMapper.userToUserDto(user);
