@@ -2,7 +2,17 @@ package com.example.docpro.features.user;
 
 public enum UserSpecialization {
 
-  SPEC_1,
-  SPEC_2,
-  SPEC_3
+  NEUROLOGIE,
+  OFTALMOLOGIE,
+  PEDIATRIE,
+  ORTOPEDIE,
+  MEDICINA_INTERNA,
+  ENDOCRINOLOGIE,
+  CHIRURGIE,
+  ALERGOLOGIE,
+  GASTROENTROLOGIE,
+  CARDIOLOGIE,
+  ORL,
+  UROLOGIE,
+  MEDICINA_MUNCII
 }
