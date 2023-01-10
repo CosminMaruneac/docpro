@@ -47,7 +47,7 @@ public class User implements Serializable {
 
   private String profileImageUrl;
 
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<UserExperience> userExperience = new HashSet<>();
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

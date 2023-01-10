@@ -1,9 +1,11 @@
 package com.example.docpro.features.user;
 
+import com.example.docpro.features.appointment.AppointmentRepository;
 import com.example.docpro.features.service.ServiceRepository;
 import com.example.docpro.features.utils.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -15,11 +17,13 @@ public class UserService {
 
   private final UserRepository userRepository;
   private final ServiceRepository serviceRepository;
+  private final AppointmentRepository appointmentRepository;
 
   @Autowired
-  public UserService(UserRepository userRepository, ServiceRepository serviceRepository) {
+  public UserService(UserRepository userRepository, ServiceRepository serviceRepository, AppointmentRepository appointmentRepository) {
     this.userRepository = userRepository;
     this.serviceRepository = serviceRepository;
+    this.appointmentRepository = appointmentRepository;
   }
 
   public UserDto getById(Long id) {
@@ -79,9 +83,13 @@ public class UserService {
         .collect(Collectors.toList());
   }
 
+  @Transactional
   public void delete(Long id) {
 
-    //to be implemented
+    User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+    appointmentRepository.deleteAllByCreatorOrDoctor(user,user);
+    userRepository.deleteById(id);
   }
 
   public UserDto assignServices(Long userId, List<Long> servicesIds) {
