@@ -16,6 +16,12 @@ public class UserExperienceController {
     return userExperienceService.create(userExperienceDto);
   }
 
+  @PutMapping(path = "")
+  public UserExperienceDto update(@RequestBody UserExperienceDto userExperienceDto) {
+
+    return userExperienceService.update(userExperienceDto);
+  }
+
   @DeleteMapping(path = "/{id}")
   public void delete(@PathVariable(name = "id") Long id) {
     userExperienceService.delete(id);

@@ -17,7 +17,7 @@ public class UserExperienceMapper {
   public static UserExperienceDto userExperienceToUserExperienceDto(UserExperience userExperience) {
 
     return UserExperienceDto.builder()
-        .id(userExperience.getUser().getId())
+        .id(userExperience.getId())
         .date(userExperience.getDate())
         .description(userExperience.getDescription())
         .userId(userExperience.getUser().getId())
