@@ -44,14 +44,17 @@ public class UserService {
     return UserMapper.userToUserDto(userRepository.save(user));
   }
 
-  public Boolean login(UserLoginDto loginDto) {
+  public UserDto login(UserLoginDto loginDto) {
 
     if (Boolean.FALSE.equals(userRepository.existsByEmail(loginDto.getEmail())))
       throw new BadRequestException("This user does not exist!");
 
     User user = userRepository.findByEmail(loginDto.getEmail());
 
-    return PasswordVerifier.verifyPassword(loginDto.getPassword(), user.getPassword());
+    if (PasswordVerifier.verifyPassword(loginDto.getPassword(), user.getPassword())) {
+      return UserMapper.userToUserDto(user);
+    }
+    return new UserDto();
 
   }
 
