@@ -7,9 +7,7 @@ import lombok.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Setter
 @Getter
@@ -28,10 +26,10 @@ public class UserDto {
 
   private String phoneNumber;
 
-  @Enumerated(EnumType.STRING)
+  @Enumerated(value = EnumType.STRING)
   private UserType userType;
 
-  @Enumerated(EnumType.STRING)
+  @Enumerated(value = EnumType.STRING)
   private UserSpecialization userSpecialization;
 
   private String password;
