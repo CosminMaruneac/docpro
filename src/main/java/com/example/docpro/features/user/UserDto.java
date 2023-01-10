@@ -40,4 +40,6 @@ public class UserDto {
 
   private List<ServiceDto> services = new ArrayList<>();
 
+  private String profileImageUrl;
+
 }

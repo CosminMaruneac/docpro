@@ -103,4 +103,23 @@ public class UserService {
     return UserMapper.userToUserDto(userRepository.save(user));
 
   }
+
+  public UserDto update(UserDto userDto) {
+
+    return userRepository.findById(userDto.getId())
+        .map(user -> {
+
+          user.setUserSpecialization(userDto.getUserSpecialization());
+          user.setUserType(userDto.getUserType());
+          user.setAddress(userDto.getAddress());
+          user.setEmail(userDto.getEmail());
+          user.setFirstName(userDto.getFirstName());
+          user.setLastName(userDto.getLastName());
+          user.setPhoneNumber(userDto.getPhoneNumber());
+          user.setProfileImageUrl(userDto.getProfileImageUrl());
+
+          userRepository.save(user);
+          return UserMapper.userToUserDto(user);
+        }).orElseThrow(EntityNotFoundException::new);
+  }
 }

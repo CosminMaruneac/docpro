@@ -70,4 +70,10 @@ public class UserController {
 
     return userService.unassignServices(userId, servicesIds);
   }
+
+  @PutMapping(path = "")
+  public UserDto update(@RequestBody UserDto userDto){
+
+    return userService.update(userDto);
+  }
 }

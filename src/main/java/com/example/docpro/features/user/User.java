@@ -41,6 +41,8 @@ public class User implements Serializable {
 
   private String email;
 
+  private String profileImageUrl;
+
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<UserExperience> userExperience = new HashSet<>();
 

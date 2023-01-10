@@ -29,4 +29,6 @@ public class UserViewDto {
   private UserSpecialization userSpecialization;
 
   private String email;
+
+  private String profileImageUrl;
 }
