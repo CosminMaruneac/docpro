@@ -22,6 +22,11 @@ public class ServiceController {
     serviceService.deleteService(id);
   }
 
+  @GetMapping(path = "/{id}")
+  public ServiceDto getById(@PathVariable(name = "id") Long id) {
+    return serviceService.getById(id);
+  }
+
   @GetMapping(path = "")
   public List<ServiceDto> getAll() {
 

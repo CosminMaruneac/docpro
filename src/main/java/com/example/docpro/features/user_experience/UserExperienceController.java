@@ -26,4 +26,9 @@ public class UserExperienceController {
   public void delete(@PathVariable(name = "id") Long id) {
     userExperienceService.delete(id);
   }
+
+  @GetMapping(path = "/{id}")
+  public UserExperienceDto getById(@PathVariable(name = "id") Long id) {
+    return userExperienceService.getById(id);
+  }
 }

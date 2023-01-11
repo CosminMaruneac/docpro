@@ -4,6 +4,7 @@ import com.example.docpro.features.utils.BadRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,5 +35,12 @@ public class ServiceService {
       throw new BadRequestException("This service does not exist!");
 
     serviceRepository.deleteById(id);
+  }
+
+  public ServiceDto getById(Long id) {
+
+    return serviceRepository.findById(id)
+        .map(ServiceMapper::mapServiceToServiceDto)
+        .orElseThrow(EntityExistsException::new);
   }
 }

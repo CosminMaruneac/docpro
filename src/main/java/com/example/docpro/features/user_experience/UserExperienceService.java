@@ -36,4 +36,11 @@ public class UserExperienceService {
           return UserExperienceMapper.userExperienceToUserExperienceDto(userExperienceRepository.save(userExperience));
         }).orElseThrow(EntityExistsException::new);
   }
+
+  public UserExperienceDto getById(Long id) {
+
+    return userExperienceRepository.findById(id)
+        .map(UserExperienceMapper::userExperienceToUserExperienceDto)
+        .orElseThrow(EntityExistsException::new);
+  }
 }
