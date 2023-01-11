@@ -32,6 +32,7 @@ public class AppointmentMapper {
         .price(appointment.getPrice())
         .service(ServiceMapper.mapServiceToServiceDto(appointment.getService()))
         .creator(UserMapper.mapUserToUserViewDto(appointment.getCreator()))
+        .date(appointment.getDate())
         .build();
   }
 }
