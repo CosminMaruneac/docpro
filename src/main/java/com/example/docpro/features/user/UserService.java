@@ -88,7 +88,7 @@ public class UserService {
 
     User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
-    appointmentRepository.deleteAllByCreatorOrDoctor(user,user);
+    appointmentRepository.deleteAllByCreatorOrDoctor(user, user);
     userRepository.deleteById(id);
   }
 
