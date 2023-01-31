@@ -96,7 +96,12 @@ public class UserService {
 
     User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
 
-    Set<com.example.docpro.features.service.Service> allByIdIn = serviceRepository.findAllByIdIn(servicesIds);
+    List<Long> existingServicesIds = user.getServices().stream().map(com.example.docpro.features.service.Service::getId).collect(Collectors.toList());
+
+    existingServicesIds.addAll(servicesIds);
+    existingServicesIds = existingServicesIds.stream().distinct().collect(Collectors.toList());
+
+    Set<com.example.docpro.features.service.Service> allByIdIn = serviceRepository.findAllByIdIn(existingServicesIds);
 
     user.setServices(allByIdIn);
 
