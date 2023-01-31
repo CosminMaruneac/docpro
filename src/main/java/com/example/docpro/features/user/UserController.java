@@ -1,9 +1,8 @@
 package com.example.docpro.features.user;
 
-import org. springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
 import java.util.List;
 
 @RestController
@@ -19,7 +18,7 @@ public class UserController {
 
 
   @PostMapping("/register")
-  public UserDto register(@RequestBody UserDto userDto) throws MessagingException {
+  public UserDto register(@RequestBody UserDto userDto) {
 
     return userService.register(userDto);
   }
@@ -67,13 +66,13 @@ public class UserController {
 
   @PatchMapping(path = "/unassign-services")
   public UserDto unassignServices(@RequestParam(name = "userId") Long userId,
-                                @RequestParam(name = "serviceId") List<Long> servicesIds) {
+                                  @RequestParam(name = "serviceId") List<Long> servicesIds) {
 
     return userService.unassignServices(userId, servicesIds);
   }
 
   @PutMapping(path = "")
-  public UserDto update(@RequestBody UserDto userDto){
+  public UserDto update(@RequestBody UserDto userDto) {
 
     return userService.update(userDto);
   }

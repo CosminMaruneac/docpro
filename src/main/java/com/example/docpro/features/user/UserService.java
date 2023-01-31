@@ -3,12 +3,10 @@ package com.example.docpro.features.user;
 import com.example.docpro.features.appointment.AppointmentRepository;
 import com.example.docpro.features.service.ServiceRepository;
 import com.example.docpro.features.utils.BadRequestException;
-import com.example.docpro.features.utils.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Set;
@@ -20,14 +18,12 @@ public class UserService {
   private final UserRepository userRepository;
   private final ServiceRepository serviceRepository;
   private final AppointmentRepository appointmentRepository;
-  private final MailService mailService;
 
   @Autowired
-  public UserService(UserRepository userRepository, ServiceRepository serviceRepository, AppointmentRepository appointmentRepository, MailService mailService) {
+  public UserService(UserRepository userRepository, ServiceRepository serviceRepository, AppointmentRepository appointmentRepository) {
     this.userRepository = userRepository;
     this.serviceRepository = serviceRepository;
     this.appointmentRepository = appointmentRepository;
-    this.mailService = mailService;
   }
 
   public UserDto getById(Long id) {
@@ -35,7 +31,7 @@ public class UserService {
     return UserMapper.userToUserDto(userRepository.getById(id));
   }
 
-  public UserDto register(UserDto userDto) throws MessagingException {
+  public UserDto register(UserDto userDto) {
 
     if (Boolean.TRUE.equals(userRepository.existsByEmail(userDto.getEmail())))
       throw new BadRequestException("This user already exists!");
@@ -43,15 +39,11 @@ public class UserService {
     return create(userDto);
   }
 
-  private UserDto create(UserDto userDto) throws MessagingException {
+  private UserDto create(UserDto userDto) {
 
     User user = UserMapper.userDtoToUser(userDto);
 
     user.setPassword(PasswordHasher.hashPassword(userDto.getPassword()));
-
-    mailService.sendEmail(userDto.getEmail(),
-        "Welcome to Docpro!",
-        "Welcome, " + userDto.getFirstName() + "!");
 
     return UserMapper.userToUserDto(userRepository.save(user));
   }

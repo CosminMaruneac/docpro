@@ -3,6 +3,7 @@ package com.example.docpro.features.appointment;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 @RestController
@@ -13,7 +14,7 @@ public class AppointmentController {
   private final AppointmentService appointmentService;
 
   @PostMapping(path = "")
-  public AppointmentDto create(@RequestBody AppointmentDto appointmentDto) {
+  public AppointmentDto create(@RequestBody AppointmentDto appointmentDto) throws MessagingException {
     return appointmentService.create(appointmentDto);
   }
 
