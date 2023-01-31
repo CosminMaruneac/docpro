@@ -1,5 +1,6 @@
 package com.example.docpro.features.service;
 
+import com.example.docpro.features.utils.CacheService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +12,17 @@ import java.util.List;
 public class ServiceController {
 
   private final ServiceService serviceService;
+  private final CacheService cacheService;
 
   @PostMapping(path = "")
   public ServiceDto createService(@RequestBody ServiceDto serviceDto) {
-    return serviceService.createService(serviceDto);
+
+    ServiceDto service = serviceService.createService(serviceDto);
+
+    cacheService.deleteCache();
+    cacheService.getServices();
+
+    return service;
   }
 
   @DeleteMapping(path = "/{id}")
@@ -30,6 +38,6 @@ public class ServiceController {
   @GetMapping(path = "")
   public List<ServiceDto> getAll() {
 
-    return serviceService.getAll();
+    return cacheService.getServices();
   }
 }
